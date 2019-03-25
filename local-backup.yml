@@ -1,0 +1,19 @@
+
+
+    - name: Read SSH public key to authorize
+      shell: cat /home/ec2-user/.ssh/id_rsa.pub
+      register: ssh_pub_key
+    - name: Authorize key with GitHub
+      local_action:
+        module: github_key
+        name: Access Key for Some Machine
+        token: '{{ github_access_token }}'
+        pubkey: '{{ ssh_pub_key.stdout }}'
+    - name: clone tech blog repo
+      git:
+        repo: 'git@github.com:redconfetti/redconfetti.github.io.git'
+        dest: /home/ec2-user/src/redconfetti.github.io
+    - name: clone cloud9-dev repo
+      git:
+        repo: 'git@github.com:redconfetti/cloud9-dev.git'
+        dest: /home/ec2-user/src/cloud9-dev
