@@ -1,0 +1,9 @@
+---
+# This playbook deploys the entire setup to the Cloud9 development environment.
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: upgrade all packages
+      yum:
+        name: '*'
+        state: latest
