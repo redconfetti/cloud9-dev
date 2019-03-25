@@ -7,3 +7,11 @@
       yum:
         name: '*'
         state: latest
+    - name: clone cloud9-dev repo
+      git:
+        repo: 'git@github.com:redconfetti/cloud9-dev.git'
+        dest: /home/ec2-user/src/cloud9-dev
+    - name: clone tech blog repo
+      git:
+        repo: 'git@github.com:redconfetti/redconfetti.github.io.git'
+        dest: /home/ec2-user/src/redconfetti.github.io
