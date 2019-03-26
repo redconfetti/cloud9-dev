@@ -1,0 +1,14 @@
+---
+- name: upgrade all packages
+  become: yes
+  yum:
+    name: '*'
+    state: latest
+- debug: var=ansible_user_id
+- name: configure git client
+  template:
+    src: gitconfig.j2
+    dest: "/home/{{ ansible_user_id }}/.gitconfig"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: 0644

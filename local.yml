@@ -1,20 +1,6 @@
 ---
 # This playbook deploys the entire setup to the Cloud9 development environment.
-- hosts: localhost
-  connection: local
-  vars:
-    dev_name: PeeWee Herman
-    dev_email: peewee@example.com
-  tasks:
-    - name: upgrade all packages
-      yum:
-        name: '*'
-        state: latest
-    - debug: var=ansible_user_id
-    - name: configure git client
-      template:
-        src: gitconfig.j2
-        dest: "/home/{{ ansible_user_id }}/.gitconfig"
-        owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
-        mode: 0644
+- hosts: local
+  roles:
+    - development
+    - yatesr.timezone
