@@ -39,5 +39,5 @@ ansible-playbook local.yml
 sudo /usr/bin/pip-2.7 install ansible
 
 # Run Playbook
-ansible-pull -U git@github.com:redconfetti/cloud9-dev.git local.yml --extra-vars "github_personal_access_token=abcdefg0123456"
+ansible-pull -U https://github.com/redconfetti/cloud9-dev.git local.yml --extra-vars "github_personal_access_token=abcdefg0123456"
 ```
