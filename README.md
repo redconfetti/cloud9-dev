@@ -34,6 +34,8 @@ ansible-playbook local.yml
 
 ## Alternative Setup
 
+This simple 2 step method should in theory work, but there are still errors.
+
 ```bash
 # Install Ansible
 sudo /usr/bin/pip-2.7 install ansible
