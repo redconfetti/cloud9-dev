@@ -4,6 +4,19 @@
   yum:
     name: '*'
     state: latest
+- name: generate ssh key pair
+  command : "ssh-keygen -q -t rsa -f /home/{{ ansible_user_id }}/.ssh/id_rsa -C \"\" -N \"\""
+  args:
+    creates: "/home/{{ ansible_user_id }}/.ssh/id_rsa"
+- name: Read SSH public key to authorize
+  shell: 'cat /home/{{ ansible_user_id }}/.ssh/id_rsa.pub'
+  register: ssh_pub_key
+- name: Authorize key with GitHub
+  local_action:
+    module: github_key
+    name: Cloud9-Dev
+    token: '{{ github_personal_access_token }}'
+    pubkey: '{{ ssh_pub_key.stdout }}'
 - name: configure git client
   template:
     src: gitconfig.j2
@@ -11,3 +24,15 @@
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"
     mode: 0644
+- name: clone tech blog repo
+  git:
+    repo: 'git@github.com:redconfetti/redconfetti.github.io.git'
+    dest: '/home/{{ ansible_user_id }}/src/redconfetti.github.io'
+    clone: no
+    update: yes
+- name: clone cloud9-dev repo
+  git:
+    repo: 'git@github.com:redconfetti/cloud9-dev.git'
+    dest: '/home/{{ ansible_user_id }}/src/cloud9-dev'
+    clone: no
+    update: yes
