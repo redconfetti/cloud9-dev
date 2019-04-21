@@ -28,11 +28,13 @@
   git:
     repo: 'git@github.com:redconfetti/redconfetti.github.io.git'
     dest: '/home/{{ ansible_user_id }}/src/redconfetti.github.io'
+    accept_hostkey: yes
     clone: no
     update: yes
 - name: clone cloud9-dev repo
   git:
     repo: 'git@github.com:redconfetti/cloud9-dev.git'
     dest: '/home/{{ ansible_user_id }}/src/cloud9-dev'
+    accept_hostkey: yes
     clone: no
     update: yes

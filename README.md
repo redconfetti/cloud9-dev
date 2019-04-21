@@ -25,6 +25,9 @@ cd ~/src/cloud9-dev
 # Configure with keys as needed
 cp -n ansible_secrets_example.yml ~/.ansible_secrets.yml
 
+# Install Ansible Galaxy dependencies
+ansible-galaxy install -r requirements.yml
+
 # Run Ansible playbook
 ansible-playbook local.yml
 ```
