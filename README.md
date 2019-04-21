@@ -32,6 +32,9 @@ Go to [Github - Add a new SSH key](https://github.com/settings/ssh/new)
 cd ~/src/cloud9-dev
 /bin/bash ./setup.sh
 
+# Copy Ansible Secrets Template to ~/.ansible_secrets.yml if it doesn't exist
+cp -n ansible_secrets_example.yml ~/.ansible_secrets.yml
+
 # Run Ansible playbook
 ansible-playbook local.yml
 ```
