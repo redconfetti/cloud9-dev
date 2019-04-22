@@ -1,6 +1,7 @@
+
 ---
 # This playbook deploys the entire setup to the Cloud9 development environment.
-- hosts: local
+- hosts: all
   roles:
    - development
    - yatesr.timezone

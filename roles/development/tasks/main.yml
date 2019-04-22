@@ -1,4 +1,11 @@
 ---
+- debug: var=hostvars['hostname']
+- debug: var=hostvars['fqdn']
+- debug: var=hostvars['ansible_local']
+- debug: var=hostvars['ansible_playbook_python']
+- debug: var=hostvars['inventory_hostname']
+- debug: var=hostvars['inventory_file']
+- debug: var=hostvars['groups']
 - name: upgrade all packages
   become: yes
   yum:

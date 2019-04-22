@@ -34,12 +34,18 @@ ansible-playbook local.yml
 
 ## Alternative Setup
 
-This simple 2 step method should in theory work, but there are still errors.
+An alternative approach using `ansible-pull`.
 
 ```bash
 # Install Ansible
 sudo /usr/bin/pip-2.7 install ansible
 
+# Install Galaxy requirements
+ansible-galaxy install yatesr.timezone
+
+# Touch Secrets File
+touch ~/ansible_secrets.yml
+
 # Run Playbook
-ansible-pull -U https://github.com/redconfetti/cloud9-dev.git local.yml --extra-vars "github_personal_access_token=abcdefg0123456"
+ansible-pull --purge --accept-host-key -U https://github.com/redconfetti/cloud9-dev.git -i '127.0.0.1,' --extra-vars "github_personal_access_token=abcdefg0123456" local.yml 
 ```
