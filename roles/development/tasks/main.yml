@@ -11,6 +11,16 @@
   yum:
     name: '*'
     state: latest
+- name: install mysql-devel
+  become: yes
+  yum:
+    name: 'mysql-devel'
+    state: latest
+- name: install npm
+  become: yes
+  yum:
+    name: 'npm'
+    state: latest
 - name: generate ssh key pair
   command : "ssh-keygen -q -t rsa -f /home/{{ ansible_user_id }}/.ssh/id_rsa -C \"\" -N \"\""
   args:
